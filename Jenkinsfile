@@ -30,7 +30,7 @@ pipeline
                {
                     try
                 {
-                    sh'mv package'
+                    sh'mvn package'
                 }
                 catch(Exception e2)
                 {
