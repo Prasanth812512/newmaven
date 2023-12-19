@@ -5,7 +5,12 @@ pipeline
     {
         stage('continous_Download')
         {
-            git 'https://github.com/intelliqittrainings/maven.git'
+            steps
+            {
+               git 'https://github.com/intelliqittrainings/maven.git'
+            }
+           
         }
+
     }
 }
