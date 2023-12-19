@@ -1,0 +1,11 @@
+pipeline
+{
+    agent any 
+    stages
+    {
+        stage('continous_Download')
+        {
+            git 'https://github.com/intelliqittrainings/maven.git'
+        }
+    }
+}
