@@ -54,7 +54,7 @@ pipeline
                     {
                         cicd.TestDeployment("172.31.19.238","app")
                     }
-                    catch(Exception e2)
+                    catch(Exception e3)
                     {
                         mail bcc: '', body: 'Continuous Deployment fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
                        exit(1)
@@ -93,9 +93,9 @@ pipeline
                     {
                         cicd.TestDelivary("1172.31.28.192","test")
                     }
-                    catch(Exception e2)
+                    catch(Exception e5)
                     {
-                        mail bcc: '', body: 'Continuous Deployment fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
+                        mail bcc: '', body: 'Continuous Delivary fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous delivary Fails', to: 'padachalap@gmail.com'
                        exit(1)
                     }
                 }
