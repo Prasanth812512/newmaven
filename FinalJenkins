@@ -83,6 +83,24 @@ pipeline
                }
             }
         }
+        stage('continouns_Delivary')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.TestDelivary("1172.31.28.192","test")
+                    }
+                    catch(Exception e2)
+                    {
+                        mail bcc: '', body: 'Continuous Deployment fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
          
 
     }

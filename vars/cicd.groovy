@@ -20,4 +20,8 @@ def RunSelenium(jobname)
 	sh "java -jar /var/lib/jenkins/workspace/${jobname}/testing.jar"
     
 }
+def TestDelivary(ip,contextPath)
+{
+    deploy adapters: [tomcat9(credentialsId: 'da243dab-b795-47c6-867f-f87e2f7d3a12', path: '', url: "http://${ip}:8080")], contextPath:"${contextPath}", war: '**/*.war'  
+}
 
