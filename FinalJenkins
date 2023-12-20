@@ -1,3 +1,4 @@
+@Library('mylib')
 pipeline
 {
     agent any 
@@ -11,7 +12,8 @@ pipeline
                 {
                     try
                     {
-                        git 'https://github.com/intelliqittrainings/maven.git'
+                        //git 'https://github.com/intelliqittrainings/maven.git'
+                        cicd.gitDownload("maven")
                     }
                     catch(Exception e1)
                     {
