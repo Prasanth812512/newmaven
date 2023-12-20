@@ -44,7 +44,7 @@ pipeline
                 }
             }
         }
-        stage('continouns_testing')
+        stage('continouns_Deployment')
         {
             steps
             {
@@ -56,10 +56,31 @@ pipeline
                     }
                     catch(Exception e2)
                     {
-                        mail bcc: '', body: 'Continuous Testing fail please check with Tomcat ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
+                        mail bcc: '', body: 'Continuous Deployment fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
                        exit(1)
                     }
                 }
+            }
+        }
+        stage('Continuous Testing')
+        {
+            steps
+            {
+               script
+               {
+                    try
+                {
+                    //git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
+                    cicd.gitDownload("FunctionalTesting")
+					//sh 'java -jar /var/lib/jenkins/workspace/DeclarativePipeline/testing.jar'
+                    cicd.RunSelenium("FinalProject")
+                }
+                catch(Exception e4)
+                {
+                    mail bcc: '', body: 'Jenkins is unable to Testing.', cc: '', from: '', replyTo: '', subject: 'Testing Failed', to: 'padachalap@gmail.com'
+                    exit(1)
+                }
+               }
             }
         }
          
