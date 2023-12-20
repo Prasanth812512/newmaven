@@ -33,7 +33,8 @@ pipeline
                 {
                     try
                     {
-                        sh 'mvn package'
+                        cicd.mavenBuild()
+                        //sh 'mvn package'
                     }
                     catch(Exception e2)
                     {
