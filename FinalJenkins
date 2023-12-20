@@ -13,7 +13,7 @@ pipeline
                     {
                         git 'https://github.com/intelliqittrainings/maven.git'
                     }
-                    catch(exception e1)
+                    catch(Exception e1)
                     {
                         mail bcc: '', body: 'Continuous Download fail please check with git repository code', cc: '', from: '', replyTo: '', subject: 'Continuous Download Fails', to: 'padachalap@gmail.com'
                        exit(1)
