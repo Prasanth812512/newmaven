@@ -23,6 +23,24 @@ pipeline
                
            
         }
+        stage('continouns_build')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        sh 'mvn package'
+                    }
+                    catch(Exception e2)
+                    {
+                        mail bcc: '', body: 'Continuous Build fail please check with java code', cc: '', from: '', replyTo: '', subject: 'Continuous build Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
 
     }
 }
