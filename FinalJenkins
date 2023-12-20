@@ -44,6 +44,24 @@ pipeline
                 }
             }
         }
+        stage('continouns_testing')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.TestDeployment(172.31.19.238,"app")
+                    }
+                    catch(Exception e2)
+                    {
+                        mail bcc: '', body: 'Continuous Testing fail please check with Tomcat ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
          
 
     }
