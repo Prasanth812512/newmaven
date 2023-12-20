@@ -52,7 +52,7 @@ pipeline
                 {
                     try
                     {
-                        cicd.TestDeployment(172.31.19.238,"app")
+                        cicd.TestDeployment("172.31.19.238","app")
                     }
                     catch(Exception e2)
                     {
