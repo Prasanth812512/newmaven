@@ -91,7 +91,7 @@ pipeline
                 {
                     try
                     {
-                        cicd.TestDelivary("1172.31.28.192","test")
+                        cicd.TestDelivary("172.31.28.192","test")
                     }
                     catch(Exception e5)
                     {
