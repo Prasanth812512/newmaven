@@ -56,7 +56,7 @@ pipeline
                     }
                     catch(Exception e2)
                     {
-                        mail bcc: '', body: 'Continuous Build fail please check with java code', cc: '', from: '', replyTo: '', subject: 'Continuous build Fails', to: 'padachalap@gmail.com'
+                        mail bcc: '', body: 'Continuous Testing fail please check with Tomcat ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
                        exit(1)
                     }
                 }
