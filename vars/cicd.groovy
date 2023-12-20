@@ -5,7 +5,7 @@ def gitDownload(repo)
 
 def mavenBuild()
 {
-    sh 'mv package'
+    sh 'mvn package'
 }
 def TestDeployment(ip,contextPath)
 {
