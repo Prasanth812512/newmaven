@@ -22,6 +22,6 @@ def RunSelenium(jobname)
 }
 def TestDelivary(ip,contextPath)
 {
-    deploy adapters: [tomcat9(credentialsId: 'da243dab-b795-47c6-867f-f87e2f7d3a12', path: '', url: "http://${ip}:8080")], contextPath:"${contextPath}", war: '**/*.war'  
+    deploy adapters: [tomcat9(credentialsId: "da243dab-b795-47c6-867f-f87e2f7d3a12", path: "", url: "http://${ip}:8080")], contextPath:"${contextPath}", war: "**/*.war"  
 }
 

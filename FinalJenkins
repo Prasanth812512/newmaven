@@ -83,6 +83,24 @@ pipeline
                }
             }
         }
+        stage('continouns_Delivary')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.TestDelivary("172.31.28.192","test")
+                    }
+                    catch(Exception e5)
+                    {
+                        mail bcc: '', body: 'Continuous Delivary fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous delivary Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
         
          
 
