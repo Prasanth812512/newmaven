@@ -1,0 +1,108 @@
+@Library('mylib')_
+pipeline
+{
+    agent any 
+    stages
+    {
+        stage('continous_Download')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        //git 'https://github.com/intelliqittrainings/maven.git'
+                        cicd.gitDownload("maven")
+                    }
+                    catch(Exception e1)
+                    {
+                        mail bcc: '', body: 'Continuous Download fail please check with git repository code', cc: '', from: '', replyTo: '', subject: 'Continuous Download Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+                }
+               
+           
+        }
+        stage('continouns_build')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.mavenBuild()
+                        //sh 'mvn package'
+                    }
+                    catch(Exception e2)
+                    {
+                        mail bcc: '', body: 'Continuous Build fail please check with java code', cc: '', from: '', replyTo: '', subject: 'Continuous build Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
+        stage('continouns_Deployment')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.TestDeployment("172.31.19.238","app")
+                    }
+                    catch(Exception e3)
+                    {
+                        mail bcc: '', body: 'Continuous Deployment fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous Testing Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
+        stage('Continuous Testing')
+        {
+            steps
+            {
+               script
+               {
+                    try
+                {
+                    //git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
+                    cicd.gitDownload("FunctionalTesting")
+					//sh 'java -jar /var/lib/jenkins/workspace/DeclarativePipeline/testing.jar'
+                    cicd.RunSelenium("FinalProject")
+                }
+                catch(Exception e4)
+                {
+                    mail bcc: '', body: 'Jenkins is unable to Testing.', cc: '', from: '', replyTo: '', subject: 'Testing Failed', to: 'padachalap@gmail.com'
+                    exit(1)
+                }
+               }
+            }
+        }
+        stage('continouns_Delivary')
+        {
+            steps
+            {
+                script
+                {
+                    try
+                    {
+                        cicd.TestDelivary("172.31.28.192","test")
+                    }
+                    catch(Exception e5)
+                    {
+                        mail bcc: '', body: 'Continuous Delivary fail please check with Tomcat. ', cc: '', from: '', replyTo: '', subject: 'Continuous delivary Fails', to: 'padachalap@gmail.com'
+                       exit(1)
+                    }
+                }
+            }
+        }
+        
+         
+
+    }
+}
