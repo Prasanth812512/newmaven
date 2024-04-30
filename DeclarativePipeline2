@@ -5,31 +5,37 @@ pipeline {
         maven 'Maven3'
     }
    
-    stages{
-        stage("Cleanup Workspace"){
-                steps {
-                cleanWs()
-                }
-        }
-
-        stage("Checkout from SCM"){
-                steps {
-                    git branch: 'master', credentialsId: 'github', url: 'https://github.com/Prasanth812512/newmaven.git'
-                }
-        }
-
-        stage("Build Application"){
-            steps {
-                sh "mvn clean package"
+   stages{
+        stage("checkout from github"){
+            steps{
+                git branch: 'master',
+                url:'https://github.com/Prasanth812512/newmaven.git'
+                echo 'pulled from github successfully'
             }
-
-       }
-
-       stage("Test Application"){
-           steps {
-                 sh "mvn test"
-           }
-       }
-	   
-	   }
+        }
+        stage("compile the code to executable format"){
+            steps{
+                sh "mvn compile"
+                echo 'converted the code from human readable to machine readable '
+            }
+        }
+        stage("testing the code"){
+            steps{
+                sh "mvn test"
+                echo 'run and execute the test cases written in selenium'
+            }
+        }
+        stage("code review to check quality of code"){
+            steps{
+                sh "mvn pmd:pmd"
+                echo 'code review done'
+            }
+        }
+        stage("convert the code to package"){
+            steps{
+                sh "mvn clean package"
+                echo 'convert the files to war file'
+            }
+        }
+    }
 	   }
